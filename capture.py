@@ -6,6 +6,7 @@ import select
 import os
 import base64
 import argparse
+import time
 
 
 class Session(object):
@@ -24,6 +25,7 @@ class Session(object):
                 buf = self.sock_.recv(1024 * 8)
                 if buf == '':
                     self.strike_ += 1
+                    time.sleep(0.05)
                 else:
                     self.strike_ = 0
                 if self.strike_ == 100:
